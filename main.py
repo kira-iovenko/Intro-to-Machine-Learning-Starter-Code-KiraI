@@ -51,7 +51,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y)
 print(X_train.head())
 
 from sklearn.tree import DecisionTreeClassifier
-clf = DecisionTreeClassifier()
+clf = DecisionTreeClassifier(max_depth=3)
 clf = clf.fit(X_train, y_train)
 
 print(y_train.head())
@@ -90,3 +90,5 @@ input("\nPress Enter to continue.\n")
 #Prints a text representation of the Decision Tree
 print("\nBelow is a text representation of how the Decision Tree makes choices:\n")
 input("\nPress Enter to continue.\n")
+
+util.printTree(clf, X.columns)
