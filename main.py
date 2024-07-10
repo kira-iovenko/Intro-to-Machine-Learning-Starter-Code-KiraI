@@ -66,8 +66,9 @@ print("The accuracy with the testing data set of the Decision Tree is : " + str(
 
 #Prints the confusion matrix
 from sklearn.metrics import confusion_matrix
-
-
+cm = confusion_matrix(y_test, test_predictions, labels=[1,0])
+print("The confusion matrix of the tree is : ")
+print(cm)
 
 
 
