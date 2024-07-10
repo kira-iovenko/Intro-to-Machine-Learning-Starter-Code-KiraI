@@ -46,12 +46,12 @@ from sklearn.model_selection import train_test_split
 X = df.drop("HeartDisease", axis = 1)
 y = df["HeartDisease"]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 5)
 
 print(X_train.head())
 
 from sklearn.tree import DecisionTreeClassifier
-clf = DecisionTreeClassifier(max_depth=3)
+clf = DecisionTreeClassifier(max_depth = 8, class_weight="balanced")
 clf = clf.fit(X_train, y_train)
 
 print(y_train.head())
@@ -73,7 +73,12 @@ print(cm)
 
 
 #Test the model with the training data set and prints accuracy score
+train_predictions = clf.predict(X_train)
 
+from sklearn.metrics import accuracy_score
+train_acc = accuracy_score(y_train, train_predictions)
+
+print("The accuracy with the training data set of the Decision Tree is : " + str(train_acc))
 
 
 
@@ -82,10 +87,8 @@ input("\nPress Enter to continue.\n")
 
 
 #Prints another application of Decision Trees and considerations
-
-
-
-
+print("Decision Trees can also be used by guitarists to select the right guitar, amp, or other devices to achieve a certain sound or playing style.")
+print("Some factors to be careful of is ensuring the data set has variaty of data on gears used to achieve different sounds, and that the data contains balanced skill levels to match guitarists of different levels of experiece.")
 
 
 #Prints a text representation of the Decision Tree
@@ -93,3 +96,4 @@ print("\nBelow is a text representation of how the Decision Tree makes choices:\
 input("\nPress Enter to continue.\n")
 
 util.printTree(clf, X.columns)
+
